@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="The complete chat history and project timeline.">
 <title>THE SCAM?</title>
+
 <style>
 :root {
   --bg:#0b0d12;
@@ -18,8 +19,16 @@
   --blue:#60a5fa;
   --green:#4ade80;
 }
-* { box-sizing:border-box; scroll-behavior:smooth; }
-html { scroll-padding-top:80px; }
+
+* {
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+html {
+  scroll-padding-top:80px;
+}
+
 body {
   margin:0;
   background:
@@ -29,280 +38,984 @@ body {
   color:var(--text);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-a { color:inherit; }
+
+a {
+  color:inherit;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
 .nav {
-  position:sticky; top:0; z-index:20;
+  position:sticky;
+  top:0;
+  z-index:20;
   backdrop-filter:blur(18px);
   background:rgba(11,13,18,.78);
   border-bottom:1px solid rgba(255,255,255,.07);
 }
+
 .nav-inner {
-  max-width:1180px; margin:auto; padding:16px 24px;
-  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  max-width:1180px;
+  margin:auto;
+  padding:16px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
-.logo { font-weight:900; letter-spacing:-.04em; font-size:20px; }
-.logo span { color:var(--accent); }
-.nav-links { display:flex; gap:22px; }
+
+.logo {
+  font-weight:900;
+  letter-spacing:-.04em;
+  font-size:20px;
+  text-decoration:none;
+}
+
+.logo span {
+  color:var(--accent);
+}
+
+.nav-links {
+  display:flex;
+  gap:22px;
+}
+
 .nav-links a {
-  color:var(--muted); text-decoration:none; font-size:14px; font-weight:600;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
 }
-.nav-links a:hover { color:#fff; }
+
+.nav-links a:hover {
+  color:#fff;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero {
-  max-width:1180px; margin:auto; padding:105px 24px 85px;
-  min-height:620px; display:grid; grid-template-columns:1.15fr .85fr;
-  align-items:center; gap:60px;
+  max-width:1180px;
+  margin:auto;
+  padding:105px 24px 85px;
+  min-height:620px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  align-items:center;
+  gap:60px;
 }
+
 .eyebrow {
-  display:inline-flex; align-items:center; gap:8px;
-  padding:7px 11px; border:1px solid var(--border);
-  background:rgba(255,255,255,.035); border-radius:999px;
-  color:#cbd5e1; font-size:12px; font-weight:800;
-  text-transform:uppercase; letter-spacing:.1em;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 11px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.035);
+  border-radius:999px;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.1em;
 }
-.dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 14px var(--green); }
+
+.dot {
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px var(--green);
+}
+
 h1 {
-  margin:20px 0 18px; font-size:clamp(48px,7vw,82px);
-  line-height:.95; letter-spacing:-.065em;
+  margin:20px 0 18px;
+  font-size:clamp(48px,7vw,82px);
+  line-height:.95;
+  letter-spacing:-.065em;
 }
+
 .gradient {
   background:linear-gradient(110deg,#fff 15%,#c4b5fd 55%,#f9a8d4);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
+
 .hero p {
-  max-width:650px; color:var(--muted); font-size:18px; line-height:1.7;
+  max-width:650px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.7;
 }
-.buttons { display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; }
+
+.buttons {
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
 .btn {
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:12px 18px; border-radius:10px; text-decoration:none;
-  font-weight:800; font-size:14px; border:1px solid var(--border);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+  border:1px solid var(--border);
   background:var(--panel2);
+  transition:.2s ease;
 }
-.btn.primary { background:#fff; color:#0b0d12; border-color:#fff; }
-.btn:hover { transform:translateY(-1px); }
+
+.btn.primary {
+  background:#fff;
+  color:#0b0d12;
+  border-color:#fff;
+}
+
+.btn:hover {
+  transform:translateY(-1px);
+}
+
 .hero-card {
-  padding:28px; border:1px solid var(--border); border-radius:22px;
-  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.07),
+    rgba(255,255,255,.025)
+  );
   box-shadow:0 25px 80px rgba(0,0,0,.35);
 }
-.hero-card .big { font-size:54px; font-weight:900; letter-spacing:-.05em; }
-.stat { padding:17px 0; border-top:1px solid var(--border); }
-.stat b { display:block; font-size:14px; }
-.stat span { color:var(--muted); font-size:13px; }
+
+.hero-card .big {
+  font-size:54px;
+  font-weight:900;
+  letter-spacing:-.05em;
+}
+
+.stat {
+  padding:17px 0;
+  border-top:1px solid var(--border);
+}
+
+.stat b {
+  display:block;
+  font-size:14px;
+}
+
+.stat span {
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
 .section {
-  max-width:1180px; margin:auto; padding:90px 24px;
+  max-width:1180px;
+  margin:auto;
+  padding:90px 24px;
 }
-.section-head { margin-bottom:34px; }
-.kicker { color:#a78bfa; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:.13em; }
-h2 { margin:7px 0 8px; font-size:40px; letter-spacing:-.04em; }
-.section-head p { color:var(--muted); margin:0; max-width:650px; line-height:1.6; }
+
+.section-head {
+  margin-bottom:34px;
+}
+
+.kicker {
+  color:#a78bfa;
+  font-weight:900;
+  text-transform:uppercase;
+  font-size:12px;
+  letter-spacing:.13em;
+}
+
+h2 {
+  margin:7px 0 8px;
+  font-size:40px;
+  letter-spacing:-.04em;
+}
+
+.section-head p {
+  color:var(--muted);
+  margin:0;
+  max-width:650px;
+  line-height:1.6;
+}
+
+/* =========================
+   CARDS
+========================= */
+
 .cards {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
+
 .card {
-  padding:24px; background:rgba(255,255,255,.035);
-  border:1px solid var(--border); border-radius:16px;
+  padding:24px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+  border-radius:16px;
 }
-.card-icon { font-size:25px; margin-bottom:14px; }
-.card h3 { margin:0 0 8px; }
-.card p { margin:0; color:var(--muted); line-height:1.6; font-size:14px; }
+
+.card h3 {
+  margin:0 0 8px;
+}
+
+.card p {
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
 .timeline {
-  position:relative; max-width:850px; margin:0 auto;
-  padding-left:30px; border-left:1px solid var(--border);
+  position:relative;
+  max-width:850px;
+  margin:0 auto;
+  padding-left:30px;
+  border-left:1px solid var(--border);
 }
-.event { position:relative; padding:0 0 35px 28px; }
+
+.event {
+  position:relative;
+  padding:0 0 35px 28px;
+}
+
 .event::before {
-  content:""; position:absolute; width:9px; height:9px;
-  border-radius:50%; background:var(--accent); left:-35px; top:7px;
+  content:"";
+  position:absolute;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--accent);
+  left:-35px;
+  top:7px;
   box-shadow:0 0 0 5px rgba(139,92,246,.1);
 }
-.event time { color:#a78bfa; font-size:12px; font-weight:800; }
-.event h3 { margin:5px 0; }
-.event p { margin:0; color:var(--muted); line-height:1.6; }
-.chat-section { background:rgba(255,255,255,.018); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+.event time {
+  color:#a78bfa;
+  font-size:12px;
+  font-weight:800;
+}
+
+.event h3 {
+  margin:5px 0;
+}
+
+.event p {
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* =========================
+   CHAT SECTION
+========================= */
+
+.chat-section {
+  background:rgba(255,255,255,.018);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
 .chat-wrap {
-  max-width:1000px; margin:auto; background:#313338;
-  border:1px solid #1e1f22; border-radius:16px; overflow:hidden;
+  max-width:1000px;
+  margin:auto;
+  background:#313338;
+  border:1px solid #1e1f22;
+  border-radius:16px;
+  overflow:hidden;
   box-shadow:0 30px 90px rgba(0,0,0,.35);
 }
+
+/* Discord-style header */
+
 .chat-header {
-  background:#1e1f22; padding:18px 22px; border-bottom:1px solid #111214;
+  background:#1e1f22;
+  padding:18px 22px;
+  border-bottom:1px solid #111214;
 }
-.chat-header strong { font-size:15px; }
-.chat-header small { color:#949ba4; display:block; margin-top:3px; }
-.message {
-  display:flex; gap:14px; padding:7px 10px; margin:2px 0; border-radius:6px;
+
+.chat-header strong {
+  font-size:15px;
 }
-.message:hover { background:rgba(255,255,255,.025); }
-.avatar {
-  width:40px; height:40px; flex:0 0 40px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; color:#fff; background:#5865f2; margin-top:2px;
+
+.chat-header small {
+  color:#949ba4;
+  display:block;
+  margin-top:3px;
 }
-.zinx .avatar { background:#9b59b6; }
-.content { min-width:0; flex:1; }
-.meta { font-size:14px; margin-bottom:2px; }
-.username { font-weight:700; }
-.zinx .username { color:#f0b8ff; }
-.andy .username { color:#8ec7ff; }
-.role { color:#5865f2; font-size:12px; font-weight:700; }
-.time { color:#949ba4; font-size:12px; margin-left:3px; }
-.text { font-size:15px; overflow-wrap:anywhere; }
-.text a { color:#00aff4; text-decoration:none; }
-.text a:hover { text-decoration:underline; }
+
+/* =========================
+   PAYWALL
+========================= */
+
+.paywall {
+  min-height:500px;
+  padding:70px 30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(139,92,246,.13),
+      transparent 55%
+    ),
+    #292b30;
+}
+
+.lock-icon {
+  width:78px;
+  height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+  background:rgba(139,92,246,.12);
+  border:1px solid rgba(139,92,246,.3);
+
+  font-size:34px;
+  margin-bottom:22px;
+
+  box-shadow:
+    0 0 40px rgba(139,92,246,.12);
+}
+
+.paywall-label {
+  color:#a78bfa;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:9px;
+}
+
+.paywall h3 {
+  margin:0;
+  font-size:36px;
+  letter-spacing:-.045em;
+}
+
+.paywall-description {
+  max-width:520px;
+  margin:13px auto 0;
+  color:#949ba4;
+  line-height:1.6;
+  font-size:15px;
+}
+
+.price {
+  margin:30px 0 5px;
+
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:9px;
+}
+
+.price span {
+  font-size:56px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.06em;
+
+  background:linear-gradient(
+    110deg,
+    #fff 15%,
+    #c4b5fd 55%,
+    #f9a8d4
+  );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.price small {
+  color:#a78bfa;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.paywall-sub {
+  max-width:440px;
+  margin:10px auto 0;
+  color:#747b87;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.pay-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:26px;
+  padding:14px 25px;
+
+  border-radius:10px;
+
+  background:#fff;
+  color:#0b0d12;
+
+  text-decoration:none;
+  font-weight:900;
+  font-size:14px;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.pay-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 12px 35px rgba(255,255,255,.13);
+}
+
+.warning {
+  margin-top:18px;
+  color:#6f7682;
+  font-size:11px;
+}
+
+/* =========================
+   NOTICE
+========================= */
+
 .notice {
-  margin-top:20px; padding:14px 16px; border-radius:10px;
-  background:rgba(139,92,246,.08); border:1px solid rgba(139,92,246,.22);
-  color:#cbd5e1; font-size:13px;
+  margin-top:20px;
+  padding:14px 16px;
+  border-radius:10px;
+
+  background:rgba(139,92,246,.08);
+  border:1px solid rgba(139,92,246,.22);
+
+  color:#cbd5e1;
+  font-size:13px;
 }
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
-  max-width:1180px; margin:auto; padding:35px 24px 55px;
-  color:var(--muted); font-size:13px; display:flex;
-  justify-content:space-between; gap:20px;
+  max-width:1180px;
+  margin:auto;
+  padding:35px 24px 55px;
+
+  color:var(--muted);
+  font-size:13px;
+
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
 }
+
+/* =========================
+   TABLET
+========================= */
+
 @media(max-width:800px) {
-  .hero { grid-template-columns:1fr; padding-top:70px; }
-  .cards { grid-template-columns:1fr; }
-  .nav-links { display:none; }
-  h2 { font-size:32px; }
+
+  .hero {
+    grid-template-columns:1fr;
+    padding-top:70px;
+  }
+
+  .cards {
+    grid-template-columns:1fr;
+  }
+
+  .nav-links {
+    display:none;
+  }
+
+  h2 {
+    font-size:32px;
+  }
+
+  .hero-card .big {
+    font-size:44px;
+  }
 }
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:600px) {
-  .section { padding:65px 14px; }
-  .hero { padding-left:14px; padding-right:14px; }
-  .message { gap:10px; padding:7px 5px; }
-  .avatar { width:34px; height:34px; flex-basis:34px; font-size:13px; }
-  .text { font-size:14px; }
-  footer { flex-direction:column; }
+
+  .section {
+    padding:65px 14px;
+  }
+
+  .hero {
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .paywall {
+    min-height:470px;
+    padding:55px 20px;
+  }
+
+  .lock-icon {
+    width:68px;
+    height:68px;
+    font-size:29px;
+  }
+
+  .paywall h3 {
+    font-size:29px;
+  }
+
+  .paywall-description {
+    font-size:14px;
+  }
+
+  .price span {
+    font-size:46px;
+  }
+
+  .price small {
+    font-size:12px;
+  }
+
+  .pay-btn {
+    width:100%;
+    max-width:300px;
+  }
+
+  footer {
+    flex-direction:column;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="logo" href="#top">THE<span>SCAM</span></a>
+
+    <a class="logo" href="#top">
+      THE<span>SCAM</span>
+    </a>
+
     <div class="nav-links">
       <a href="#about">Overview</a>
       <a href="#timeline">Timeline</a>
       <a href="#chat">Chat History</a>
     </div>
+
   </div>
 </nav>
 
+
 <header class="hero" id="top">
+
   <div>
-    <div class="eyebrow"><span class="dot"></span> Archived conversation</div>
-    <h1>The story<br><span class="gradient">in the logs.</span></h1>
+
+    <div class="eyebrow">
+      <span class="dot"></span>
+      Archived conversation
+    </div>
+
+    <h1>
+      The story<br>
+      <span class="gradient">in the logs.</span>
+    </h1>
+
     <p>
       A preserved record of the conversations surrounding the project,
       ownership, development, access, revenue, and the proposed sale.
       A real insight into the "scamming" of Zinx.
     </p>
+
     <div class="buttons">
-      <a class="btn primary" href="#chat">Read the chat</a>
-      <a class="btn" href="#timeline">View timeline</a>
+      <a class="btn primary" href="#chat">
+        Read the chat
+      </a>
+
+      <a class="btn" href="#timeline">
+        View timeline
+      </a>
     </div>
+
   </div>
+
+
   <aside class="hero-card">
-    <div class="big">Scam or negotiation?</div>
-    <p style="margin:5px 0 24px;color:var(--muted)">Conversation archive</p>
-    <div class="stat"><b>ZinxLinkk [FUND]</b><span>Participant</span></div>
-    <div class="stat"><b>AndyTheNPC [CHNA]</b><span>Participant</span></div>
+
+    <div class="big">
+      Scam or negotiation?
+    </div>
+
+    <p style="margin:5px 0 24px;color:var(--muted)">
+      Conversation archive
+    </p>
+
+    <div class="stat">
+      <b>ZinxLinkk [FUND]</b>
+      <span>Participant</span>
+    </div>
+
+    <div class="stat">
+      <b>AndyTheNPC [CHNA]</b>
+      <span>Participant</span>
+    </div>
+
   </aside>
+
 </header>
 
-<section class="section" id="about">
-  <div class="section-head">
-    <div class="kicker">Overview</div>
-    <h2>What happened?</h2>
-    <p>Andy reached out to Zinx with the idea of a new Roblox Experience. A personalized, custom experience to cater to the community. Upon project completion, Zinx, had requested full access/ownership, and demanding Andy hand over the project. Negotiations were made, but eventually Zinx refused, called Andy a scammer, and declined work in the project.</p>
-  </div>
-  <div class="cards">
-    <div class="card"><h3>Game development</h3><p>The game was described as ready while additional shop items, booth styles, ranks, paid items, and other updates were planned.</p></div>
-    <div class="card"><h3>Ownership & access</h3><p>The central disagreement concerned who would own and control the game and what access each person would retain.</p></div>
-    <div class="card"><h3>Valuation</h3><p>The conversation eventually moved toward selling the project, including a proposed price of 50,000 Robux and disagreement over its value.</p></div>
-  </div>
-</section>
 
 <section class="section" id="about">
+
   <div class="section-head">
-    <div class="kicker">Definitions</div>
-    <h2>What does it mean to scam?</h2>
-    <p>A quick google search into the definition of scam, scammed, and to be scammed.</p>
-  </div>
-  <div class="cards">
-    <div class="card"><h3>Scam</h3><p>A scam is a dishonest or deceptive plan designed to trick people into giving up their money, personal data, or valuables.</p></div>
-    <div class="card"><h3>Scammed</h3><p>scammed means you were tricked or defrauded by a dishonest scheme designed to steal your money, personal information, or valuables.</p></div>
-    <div class="card"><h3>To be scammed</h3><p>To be scammed means you are tricked or deceived by a dishonest person or group into giving away your money, personal information, or valuables.</p></div>
-  </div>
-</section>
 
-<section class="section" id="timeline">
-  <div class="section-head">
-    <div class="kicker">Timeline</div>
-    <h2>Key moments</h2>
-    <p>The conversation progressed from access and ownership to a proposed sale and disagreement over valuation.</p>
-  </div>
-  <div class="timeline">
-    <div class="event"><time>8:41 AM</time><h3>Game needs to go live</h3><p>The discussion begins with urgency around getting the game up.</p></div>
-    <div class="event"><time>9:59 AM</time><h3>Ownership enters the discussion</h3><p>Full ownership is requested by Zinx, alongside a proposed 50/50 revenue cut.</p></div>
-    <div class="event"><time>10:00–11:16 AM</time><h3>Access vs. control</h3><p>Both sides discuss API access, Discord integration, Roblox API requirements, and the risks of shared ownership.</p></div>
-    <div class="event"><time>11:33 AM</time><h3>50,000 Robux offer</h3><p>A proposal is made to sell the game and everything associated with it for 50,000 Robux.</p></div>
-    <div class="event"><time>11:35 AM–12:07 PM</time><h3>Valuation dispute</h3><p>The two sides debate Talent listings, custom development, free assets, and what comparable games are worth.</p></div>
-    <div class="event"><time>3:29 PM</time><h3>Conversation ends</h3><p>The conversation ends abruptly with Zinx doubting the work and refusal colaborate.</p></div>
-  </div>
-</section>
+    <div class="kicker">
+      Overview
+    </div>
 
-<section class="section chat-section" id="chat">
-  <div class="section-head">
-    <div class="kicker">Primary source</div>
-    <h2>Chat History</h2>
-    <p>The conversation is preserved below in a Discord-style presentation. The media content/screen shots have been redacted.</p>
-  </div>
-  <div class="chat-wrap">
-  <div class="chat-header">
-    <strong>Project Discussion</strong>
-    <small>August 22, 2026 · Restricted archive</small>
-  </div>
-
-  <div class="paywall">
-    <div class="lock-icon">🔒</div>
-
-    <div class="paywall-label">RESTRICTED ARCHIVE</div>
-
-    <h3>Chat History Locked</h3>
+    <h2>
+      What happened?
+    </h2>
 
     <p>
-      The complete conversation archive has been placed
-      behind a restricted-access paywall.
+      Andy reached out to Zinx with the idea of a new Roblox Experience.
+      A personalized, custom experience to cater to the community.
+      Upon project completion, Zinx had requested full access/ownership,
+      and demanded Andy hand over the project. Negotiations were made,
+      but eventually Zinx refused, called Andy a scammer, and declined
+      work in the project.
     </p>
 
-    <div class="price">
-      <span>50,000</span>
-      <small>ROBux</small>
+  </div>
+
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Game development</h3>
+
+      <p>
+        The game was described as ready while additional shop items,
+        booth styles, ranks, paid items, and other updates were planned.
+      </p>
     </div>
 
-    <p class="paywall-sub">
-      Payment is required to access the complete archived
-      conversation, including all messages and timestamps.
-    </p>
 
-    <a class="pay-btn" href="#">
-      🔓 Unlock Chat History
-    </a>
+    <div class="card">
+      <h3>Ownership & access</h3>
 
-    <div class="warning">
-      ⚠️ Access fee is non-refundable.
+      <p>
+        The central disagreement concerned who would own and control
+        the game and what access each person would retain.
+      </p>
     </div>
+
+
+    <div class="card">
+      <h3>Valuation</h3>
+
+      <p>
+        The conversation eventually moved toward selling the project,
+        including a proposed price of 50,000 Robux and disagreement
+        over its value.
+      </p>
+    </div>
+
   </div>
-</div>
-  <div class="notice">
-    This section presents the supplied conversation as an archive. Message wording has been preserved rather than rewritten.
-  </div>
+
 </section>
 
+
+<section class="section" id="definitions">
+
+  <div class="section-head">
+
+    <div class="kicker">
+      Definitions
+    </div>
+
+    <h2>
+      What does it mean to scam?
+    </h2>
+
+    <p>
+      A quick Google search into the definition of scam, scammed,
+      and to be scammed.
+    </p>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Scam</h3>
+
+      <p>
+        A scam is a dishonest or deceptive plan designed to trick
+        people into giving up their money, personal data, or valuables.
+      </p>
+    </div>
+
+
+    <div class="card">
+      <h3>Scammed</h3>
+
+      <p>
+        Scammed means you were tricked or defrauded by a dishonest
+        scheme designed to steal your money, personal information,
+        or valuables.
+      </p>
+    </div>
+
+
+    <div class="card">
+      <h3>To be scammed</h3>
+
+      <p>
+        To be scammed means you are tricked or deceived by a dishonest
+        person or group into giving away your money, personal
+        information, or valuables.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="timeline">
+
+  <div class="section-head">
+
+    <div class="kicker">
+      Timeline
+    </div>
+
+    <h2>
+      Key moments
+    </h2>
+
+    <p>
+      The conversation progressed from access and ownership to a
+      proposed sale and disagreement over valuation.
+    </p>
+
+  </div>
+
+
+  <div class="timeline">
+
+    <div class="event">
+      <time>8:41 AM</time>
+
+      <h3>
+        Game needs to go live
+      </h3>
+
+      <p>
+        The discussion begins with urgency around getting the game up.
+      </p>
+    </div>
+
+
+    <div class="event">
+      <time>9:59 AM</time>
+
+      <h3>
+        Ownership enters the discussion
+      </h3>
+
+      <p>
+        Full ownership is requested by Zinx, alongside a proposed
+        50/50 revenue cut.
+      </p>
+    </div>
+
+
+    <div class="event">
+      <time>10:00–11:16 AM</time>
+
+      <h3>
+        Access vs. control
+      </h3>
+
+      <p>
+        Both sides discuss API access, Discord integration, Roblox API
+        requirements, and the risks of shared ownership.
+      </p>
+    </div>
+
+
+    <div class="event">
+      <time>11:33 AM</time>
+
+      <h3>
+        50,000 Robux offer
+      </h3>
+
+      <p>
+        A proposal is made to sell the game and everything associated
+        with it for 50,000 Robux.
+      </p>
+    </div>
+
+
+    <div class="event">
+      <time>11:35 AM–12:07 PM</time>
+
+      <h3>
+        Valuation dispute
+      </h3>
+
+      <p>
+        The two sides debate Talent listings, custom development,
+        free assets, and what comparable games are worth.
+      </p>
+    </div>
+
+
+    <div class="event">
+      <time>3:29 PM</time>
+
+      <h3>
+        Conversation ends
+      </h3>
+
+      <p>
+        The conversation ends abruptly with Zinx doubting the work
+        and refusing to collaborate.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section chat-section" id="chat">
+
+  <div class="section-head">
+
+    <div class="kicker">
+      Primary source
+    </div>
+
+    <h2>
+      Chat History
+    </h2>
+
+    <p>
+      The conversation archive is currently restricted.
+      Access to the complete chat history requires payment.
+    </p>
+
+  </div>
+
+
+  <div class="chat-wrap">
+
+    <div class="chat-header">
+      <strong>
+        Project Discussion
+      </strong>
+
+      <small>
+        August 22, 2026 · Restricted archive
+      </small>
+    </div>
+
+
+    <div class="paywall">
+
+      <div class="lock-icon">
+        🔒
+      </div>
+
+
+      <div class="paywall-label">
+        Restricted Archive
+      </div>
+
+
+      <h3>
+        Chat History Locked
+      </h3>
+
+
+      <p class="paywall-description">
+        The complete conversation archive has been placed
+        behind a restricted-access paywall.
+      </p>
+
+
+      <div class="price">
+        <span>50,000</span>
+        <small>ROBUX</small>
+      </div>
+
+
+      <p class="paywall-sub">
+        Payment is required to access the complete archived
+        conversation, including all messages and timestamps.
+      </p>
+
+
+      <a class="pay-btn" href="#">
+        🔓 Unlock Chat History
+      </a>
+
+
+      <div class="warning">
+        ⚠️ Access fee is non-refundable.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="notice">
+    🔒 The archived conversation is currently unavailable.
+    Access requires payment of 50,000 Robux.
+  </div>
+
+</section>
+
+
 <footer>
-  <span>www.zinxcomehome.org/THE-SCAM</span>
+
+  <span>
+    www.zinxcomehome.org/THE-SCAM
+  </span>
+
 </footer>
 
 </body>
