@@ -1,1 +1,623 @@
-# AndyTheNPC.github.io-THESCAM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The complete chat history and project timeline.">
+<title>Project Archive — Chat History</title>
+<style>
+:root {
+  --bg:#0b0d12;
+  --panel:#11141b;
+  --panel2:#171b24;
+  --border:#252b38;
+  --text:#eef1f6;
+  --muted:#9aa3b2;
+  --accent:#8b5cf6;
+  --accent2:#ec4899;
+  --blue:#60a5fa;
+  --green:#4ade80;
+}
+* { box-sizing:border-box; scroll-behavior:smooth; }
+html { scroll-padding-top:80px; }
+body {
+  margin:0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(139,92,246,.15), transparent 28rem),
+    radial-gradient(circle at 85% 30%, rgba(236,72,153,.10), transparent 25rem),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+a { color:inherit; }
+.nav {
+  position:sticky; top:0; z-index:20;
+  backdrop-filter:blur(18px);
+  background:rgba(11,13,18,.78);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.nav-inner {
+  max-width:1180px; margin:auto; padding:16px 24px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.logo { font-weight:900; letter-spacing:-.04em; font-size:20px; }
+.logo span { color:var(--accent); }
+.nav-links { display:flex; gap:22px; }
+.nav-links a {
+  color:var(--muted); text-decoration:none; font-size:14px; font-weight:600;
+}
+.nav-links a:hover { color:#fff; }
+.hero {
+  max-width:1180px; margin:auto; padding:105px 24px 85px;
+  min-height:620px; display:grid; grid-template-columns:1.15fr .85fr;
+  align-items:center; gap:60px;
+}
+.eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 11px; border:1px solid var(--border);
+  background:rgba(255,255,255,.035); border-radius:999px;
+  color:#cbd5e1; font-size:12px; font-weight:800;
+  text-transform:uppercase; letter-spacing:.1em;
+}
+.dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 14px var(--green); }
+h1 {
+  margin:20px 0 18px; font-size:clamp(48px,7vw,82px);
+  line-height:.95; letter-spacing:-.065em;
+}
+.gradient {
+  background:linear-gradient(110deg,#fff 15%,#c4b5fd 55%,#f9a8d4);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p {
+  max-width:650px; color:var(--muted); font-size:18px; line-height:1.7;
+}
+.buttons { display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 18px; border-radius:10px; text-decoration:none;
+  font-weight:800; font-size:14px; border:1px solid var(--border);
+  background:var(--panel2);
+}
+.btn.primary { background:#fff; color:#0b0d12; border-color:#fff; }
+.btn:hover { transform:translateY(-1px); }
+.hero-card {
+  padding:28px; border:1px solid var(--border); border-radius:22px;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+  box-shadow:0 25px 80px rgba(0,0,0,.35);
+}
+.hero-card .big { font-size:54px; font-weight:900; letter-spacing:-.05em; }
+.stat { padding:17px 0; border-top:1px solid var(--border); }
+.stat b { display:block; font-size:14px; }
+.stat span { color:var(--muted); font-size:13px; }
+.section {
+  max-width:1180px; margin:auto; padding:90px 24px;
+}
+.section-head { margin-bottom:34px; }
+.kicker { color:#a78bfa; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:.13em; }
+h2 { margin:7px 0 8px; font-size:40px; letter-spacing:-.04em; }
+.section-head p { color:var(--muted); margin:0; max-width:650px; line-height:1.6; }
+.cards {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+}
+.card {
+  padding:24px; background:rgba(255,255,255,.035);
+  border:1px solid var(--border); border-radius:16px;
+}
+.card-icon { font-size:25px; margin-bottom:14px; }
+.card h3 { margin:0 0 8px; }
+.card p { margin:0; color:var(--muted); line-height:1.6; font-size:14px; }
+.timeline {
+  position:relative; max-width:850px; margin:0 auto;
+  padding-left:30px; border-left:1px solid var(--border);
+}
+.event { position:relative; padding:0 0 35px 28px; }
+.event::before {
+  content:""; position:absolute; width:9px; height:9px;
+  border-radius:50%; background:var(--accent); left:-35px; top:7px;
+  box-shadow:0 0 0 5px rgba(139,92,246,.1);
+}
+.event time { color:#a78bfa; font-size:12px; font-weight:800; }
+.event h3 { margin:5px 0; }
+.event p { margin:0; color:var(--muted); line-height:1.6; }
+.chat-section { background:rgba(255,255,255,.018); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.chat-wrap {
+  max-width:1000px; margin:auto; background:#313338;
+  border:1px solid #1e1f22; border-radius:16px; overflow:hidden;
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+}
+.chat-header {
+  background:#1e1f22; padding:18px 22px; border-bottom:1px solid #111214;
+}
+.chat-header strong { font-size:15px; }
+.chat-header small { color:#949ba4; display:block; margin-top:3px; }
+.message {
+  display:flex; gap:14px; padding:7px 10px; margin:2px 0; border-radius:6px;
+}
+.message:hover { background:rgba(255,255,255,.025); }
+.avatar {
+  width:40px; height:40px; flex:0 0 40px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; color:#fff; background:#5865f2; margin-top:2px;
+}
+.zinx .avatar { background:#9b59b6; }
+.content { min-width:0; flex:1; }
+.meta { font-size:14px; margin-bottom:2px; }
+.username { font-weight:700; }
+.zinx .username { color:#f0b8ff; }
+.andy .username { color:#8ec7ff; }
+.role { color:#5865f2; font-size:12px; font-weight:700; }
+.time { color:#949ba4; font-size:12px; margin-left:3px; }
+.text { font-size:15px; overflow-wrap:anywhere; }
+.text a { color:#00aff4; text-decoration:none; }
+.text a:hover { text-decoration:underline; }
+.notice {
+  margin-top:20px; padding:14px 16px; border-radius:10px;
+  background:rgba(139,92,246,.08); border:1px solid rgba(139,92,246,.22);
+  color:#cbd5e1; font-size:13px;
+}
+footer {
+  max-width:1180px; margin:auto; padding:35px 24px 55px;
+  color:var(--muted); font-size:13px; display:flex;
+  justify-content:space-between; gap:20px;
+}
+@media(max-width:800px) {
+  .hero { grid-template-columns:1fr; padding-top:70px; }
+  .cards { grid-template-columns:1fr; }
+  .nav-links { display:none; }
+  h2 { font-size:32px; }
+}
+@media(max-width:600px) {
+  .section { padding:65px 14px; }
+  .hero { padding-left:14px; padding-right:14px; }
+  .message { gap:10px; padding:7px 5px; }
+  .avatar { width:34px; height:34px; flex-basis:34px; font-size:13px; }
+  .text { font-size:14px; }
+  footer { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">THE<span>SCAM</span></a>
+    <div class="nav-links">
+      <a href="#about">Overview</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#chat">Chat History</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <div class="eyebrow"><span class="dot"></span> Archived conversation</div>
+    <h1>The story<br><span class="gradient">in the logs.</span></h1>
+    <p>
+      A preserved record of the conversations surrounding the project,
+      ownership, development, access, revenue, and the proposed sale.
+      A real insight into the "scamming" of Zinx.
+    </p>
+    <div class="buttons">
+      <a class="btn primary" href="#chat">Read the chat</a>
+      <a class="btn" href="#timeline">View timeline</a>
+    </div>
+  </div>
+  <aside class="hero-card">
+    <div class="big">Scam or negotiation?</div>
+    <p style="margin:5px 0 24px;color:var(--muted)">Conversation archive</p>
+    <div class="stat"><b>ZinxLinkk [FUND]</b><span>Participant</span></div>
+    <div class="stat"><b>AndyTheNPC [CHNA]</b><span>Participant</span></div>
+  </aside>
+</header>
+
+<section class="section" id="about">
+  <div class="section-head">
+    <div class="kicker">Overview</div>
+    <h2>What happened?</h2>
+    <p>Andy reached out to Zinx with the idea of a new Roblox Experience. A personalized, custom experience to cater to the community. Upon project completion, Zinx, had requested full access/ownership, and demanding Andy hand over the project. Negotiations were made, but eventually Zinx refused, called Andy a scammer, and declined work in the project.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>Game development</h3><p>The game was described as ready while additional shop items, booth styles, ranks, paid items, and other updates were planned.</p></div>
+    <div class="card"><h3>Ownership & access</h3><p>The central disagreement concerned who would own and control the game and what access each person would retain.</p></div>
+    <div class="card"><h3>Valuation</h3><p>The conversation eventually moved toward selling the project, including a proposed price of 50,000 Robux and disagreement over its value.</p></div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-head">
+    <div class="kicker">Definitions</div>
+    <h2>What does it mean to scam?</h2>
+    <p>A quick google search into the definition of scam, to be scammed.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>Scam</h3><p>A scam is a dishonest or deceptive plan designed to trick people into giving up their money, personal data, or valuables.</p></div>
+    <div class="card"><h3>Scammed</h3><p>scammed means you were tricked or defrauded by a dishonest scheme designed to steal your money, personal information, or valuables.</p></div>
+    <div class="card"><h3>To be scammed</h3><p>To be scammed means you are tricked or deceived by a dishonest person or group into giving away your money, personal information, or valuables.</p></div>
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <div class="section-head">
+    <div class="kicker">Timeline</div>
+    <h2>Key moments</h2>
+    <p>The conversation progressed from access and ownership to a proposed sale and disagreement over valuation.</p>
+  </div>
+  <div class="timeline">
+    <div class="event"><time>8:41 AM</time><h3>Game needs to go live</h3><p>The discussion begins with urgency around getting the game up.</p></div>
+    <div class="event"><time>9:59 AM</time><h3>Ownership enters the discussion</h3><p>Full ownership is requested by Zinx, alongside a proposed 50/50 revenue cut.</p></div>
+    <div class="event"><time>10:00–11:16 AM</time><h3>Access vs. control</h3><p>Both sides discuss API access, Discord integration, Roblox API requirements, and the risks of shared ownership.</p></div>
+    <div class="event"><time>11:33 AM</time><h3>50,000 Robux offer</h3><p>A proposal is made to sell the game and everything associated with it for 50,000 Robux.</p></div>
+    <div class="event"><time>11:35 AM–12:07 PM</time><h3>Valuation dispute</h3><p>The two sides debate Talent listings, custom development, free assets, and what comparable games are worth.</p></div>
+    <div class="event"><time>3:29 PM</time><h3>Conversation ends</h3><p>The conversation ends abruptly with Zinx doubting the work and refusal colaborate.</p></div>
+  </div>
+</section>
+
+<section class="section chat-section" id="chat">
+  <div class="section-head">
+    <div class="kicker">Primary source</div>
+    <h2>Chat History</h2>
+    <p>The conversation is preserved below in a Discord-style presentation.</p>
+  </div>
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <strong>Project Discussion</strong>
+      <small>August 22, 2026 · Complete archived conversation</small>
+    </div>
+    <div style="padding:18px 10px 30px;">
+      <article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 8:41 AM</span></div>
+        <div class="text">dm when u can<br>we need the game up asap now so like i need u to lock in</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 9:57 AM</span></div>
+        <div class="text">Sup<br>Game is “ready” but more updates will come<br>Want to add shop items and booth styles</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 9:59 AM</span></div>
+        <div class="text">Can you give the account<br>'StreamersHub' access to<br>admin etc<br>im gonna check it out on alt</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 9:59 AM</span></div>
+        <div class="text">Can’t right this second, but yeah. I gave guncake it already</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 9:59 AM</span></div>
+        <div class="text">well ofc i will need full ownership of the game anyway<br>once its done<br>but will give u admin<br>and ofc a % cut of the game<br>50-50</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 10:00 AM</span></div>
+        <div class="text">Whaaaat I want my ownership and just the 10%. Going to continue updating and adding shop items for additional revenue.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 10:01 AM</span></div>
+        <div class="text">For me to do what I need to do to add more advanced stuff I need ownership<br>i want to directly code and connect it to the discord systems<br>for events</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 10:20 AM</span></div>
+        <div class="text">I can give you API access, but can’t just hand over direct full ownership. Only way I’d give you the game is if I sold it lol. I want to continue improving and updating.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 10:20 AM</span></div>
+        <div class="text">then I can't use it</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 10:51 AM</span></div>
+        <div class="text">You could. If you wanted full ownership I’d consider selling, but would have to talk to partner. We made a gaming studio, plsdonate is one of our projects.<br>I’d rather keep my ownership, 10% commission, and give you the partnership with roles/access. I plan to be adding more shop/rank/paid items.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 10:56 AM</span></div>
+        <div class="text">You can keep your ownership but I won't be using the game in this case in anything related to me, my streams or plsdonatefunds. If you own the game you control everything related to the funds. Taking 10% commission is taking the whole amount of profit from the game as through the plus transfer system the game only gets 10% of the donated amounts. I'd get nothing and you'd profit entirely which would all be from my server and project. No thanks</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 10:59 AM</span></div>
+        <div class="text">That fine, but you losing 10% Robux from the player base(not your account unless you donate) isn’t a bad deal for a free, custom community server. I’m only charging the players. If you really don’t want to lose your 10% I could group payout yours back. But at most that’s still only 1k, or $10usd a month as that’s the transfer limit.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:01 AM</span></div>
+        <div class="text">No? If people are donating in the game using the plus system it could be WAY more than 1k robux lol. One of my donators single handedly has sent me millions of robux. They usually send me 10K a month via plus solo so if they did that through the game it would be 1000 robux SOLO from just them.</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:11 AM</span></div>
+        <div class="text">Roblox plus transfer limit is 10k a month per person, so 10% of that is 1000, or 10USD is all I’d get per person at best. Anything more than that would have to be in game pass, which isn’t server supported and done separately.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:11 AM</span></div>
+        <div class="text">Yes, and there wouldn't just be 1 person playing lol?</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:12 AM</span></div>
+        <div class="text">Your personal transfers can be done outside of the server so you retain 100%. I’m talking about community that is def not doing 10k monthly.<br>And like I said, if you really wanted I’ll just cut you in if the Robux is your concern.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:13 AM</span></div>
+        <div class="text">Robux is part of it but a big part is: you owning it also means that I have no access to actually do what I need to do for the events and discord linking and puts me at risk as I don't control what happens to the game fully.<br>It makes the game obsolete for me<br>I can't use it for the purpose I needed it for<br>so unless I get it its hopeless anyway</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:14 AM</span></div>
+        <div class="text">You’d have access to do what you need, just we retain ownership for development and cuts. It’s a group so it’s group payouts for funds.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:14 AM</span></div>
+        <div class="text">No I wouldn't as you don't know how it works<br>It connects to the group and requires my account to be owner for it to link to my discord<br>it uses ROBLOX's api as well</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:16 AM</span></div>
+        <div class="text">Well if that’s your concern is it not working, I said i could talk to my partner and just consider selling the project, then you can just “hire” us on as development if needed.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:16 AM</span></div>
+        <div class="text">I mean depends on the price<br>if its something stupid i'd say nope</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:17 AM</span></div>
+        <div class="text">I’ll discuss it, but like I said we’re making a gaming studio, so we are in the process of making several games. I was and am made dev over this one, but we split costs.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:17 AM</span></div>
+        <div class="text">well let me know<br>cause ima just commission someone to do it if the price is not reasonable</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:19 AM</span></div>
+        <div class="text">I’ll talk to him and see what we need.</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:33 AM</span></div>
+        <div class="text">Why don’t we just do 50,000 Robux and game and everything is all yours. If you want to keep me on as a developer then just pay as needed per project. Or take it on yourself or whatever you want, it’s yours.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:33 AM</span></div>
+        <div class="text">LMFAO HOLY FUCK YOU'RE DELUSIONAL HAHAHAHAHHA Ima commission someone else. Fuck off</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:33 AM</span></div>
+        <div class="text">Have you not checked Roblox talent studio?<br>Most full games go for well over 100k<br>What would you pay then? I’m not letting go a full project for like 5k Robux lol. I’d make that back easily with some advertising. You would make back 50k even easier since you have a fan base.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:35 AM</span></div>
+        <div class="text">You worked on the game for a week at max. I have friends who are experienced devs and would actually not charge me anywhere near that. I have asked about this before when I was previously interested in making an event game and WAYY lower price. If you believe it is worth that amount sure, but I will not be buying. Good luck.</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:36 AM</span></div>
+        <div class="text">Def more than a week and lots of hours. What did you offer them then?<br>Fuck it I really don’t care, what price do you want it for? I have other projects I can put more time into.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:38 AM</span></div>
+        <div class="text">Nothing. 0, if you wanna disrespect me like that, good luck I hope it all goes well. Much rather commission a trusted cheaper dude myself who will do what I request directly.</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:40 AM</span></div>
+        <div class="text">It ain’t disrespect when I’m going on talent network and seeing what other games sell for and cutting it down by a fourth.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:41 AM</span></div>
+        <div class="text">Please tell me what exactly you searched on talent network cause I can't wait to disprove you</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:45 AM</span></div>
+        <div class="text">I searched game for sale, full game, etc<br>Most of them were brainrot crap around 100k<br>That’s why I said if that’s seems high tell me what’s reasonable then. I’m going off talent network, not what you know others have paid.<br>Literally just a template 100k</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:50 AM</span></div>
+        <div class="text">Bro... you're so retarded<br>100k USD<br>NOT ROBUX<br>Also<br>that is a random post<br>sometimes people set the price for attention not actual price</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:50 AM</span></div>
+        <div class="text">This one is $315 euros in desc<br>Well like I said, I’m just going off talent network. That’s my source.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:51 AM</span></div>
+        <div class="text">Also you can't equivalence your game to a mega fully developed game.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 11:51 AM</span></div>
+        <div class="text">bro... you just went off of a 100K USD post and stated 'see 100K robux' LMAO<br>YOU'RE just WRONG and also dont know what you're doing</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 11:52 AM</span></div>
+        <div class="text">No I can’t equate it to some of these games, thus I cut the price in half from what I was seeing<br>And some of them are Robux, some are usd<br>140k Robux<br>This is what I’m seeing, that’s why I suggested 50,000 Robux. If that’s too high, counter. You would have a better return utilizing the server than I would.<br>50k might be high, but you and I both know you’d make it back a couple months lmao</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 12:02 PM</span></div>
+        <div class="text"><a href="https://create.roblox.com/talent/jobs/4402001679409775" target="_blank" rel="noopener">https://create.roblox.com/talent/jobs/4402001679409775</a> Please look at island vibes properly 315 euro for it for a reason.<br>It has fully developed minigames that are custom.<br>Proper UI custom made.<br>Extremely well developed GFX and systems<br>Proper collectible system and UI for it.<br>Proper developed custom scripts, not purchased ones.<br>Rarity tiers fishing systems with collectibles.<br>Literally most models are custom<br>Disaster Race<br>Many custom built levels and race tracks.<br>A LOT of custom scripting for the gameplay and disasters in the races.<br>Custom levelling system<br>Very custom UI design.<br>Also I'd still call this one insanely overpriced. He originally priced it at 280k ROBUX and halved the price cause OFC no-one would purchase it for that. I don't believe anyone would purchase it for this either despite how it currently is. If you want to see a game worth around 100K robux check out - <a href="https://create.roblox.com/talent/jobs/8255649774963019" target="_blank" rel="noopener">https://create.roblox.com/talent/jobs/8255649774963019</a><br>Creator Hub - Talent<br>Connect with other creators, find people to collaborate with, and showcase your achievements to the community.<br>Creator Hub - Talent<br>Connect with other creators, find people to collaborate with, and showcase your achievements to the community.</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 12:03 PM</span></div>
+        <div class="text">Then what’s an appropriate prize for a please donate</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 12:03 PM</span></div>
+        <div class="text">For the actual game pls donate or for the one you made?</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 12:04 PM</span></div>
+        <div class="text">Both</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 12:07 PM</span></div>
+        <div class="text">Well the actual pls donate would still be worth a SOLID amount as its entirely custom. HOWEVER, the price would be MUCH MUCH MUCH lower since the ROBLOX plus update as the revenue has massively decreased because of it. However, the game probs still makes millions of robux weekly from the donations, sponsors and user joins/private servers and gamepasses. Without seeing the actual revenue data it is really hard to put a price but it would be worth well more than i can afford in robux or USD. In terms of your game, there isn't anything custom about it. It is mostly free assets put together using a default ROBLOX transfer system in place. I appreciate the work you did but you can't pretend its some mega developed custom game with custom coding etc.<br>Price wise, idk and would need to be discussed with whoever buys it but not much</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 2:00 PM</span></div>
+        <div class="text">My game has a mix of custom and free assets.</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 2:00 PM</span></div>
+        <div class="text">I have played, the majority is free assets and I saw no custom</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 2:03 PM</span></div>
+        <div class="text">About 80% of scripts are custom…<br>At least</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 3:07 PM</span></div>
+        <div class="text">then they are ai scripted<br>cause it looks and feels so generic and the same</div>
+      </div>
+    </article>
+<article class="message zinx">
+      <div class="avatar">Z</div>
+      <div class="content">
+        <div class="meta"><span class="username">ZinxLinkk</span> <span class="role">[FUND]</span> <span class="time">— 8/22/26, 3:29 PM</span></div>
+        <div class="text">On a serious note, bro tries to scam my ass and then makes a fucking weird ass video about it bro, u got issues</div>
+      </div>
+    </article>
+<article class="message andy">
+      <div class="avatar">A</div>
+      <div class="content">
+        <div class="meta"><span class="username">AndyTheNPC</span> <span class="role">[CHNA]</span> <span class="time">— 8/22/26, 3:30 PM</span></div>
+        <div class="text">Sent a heart ;)</div>
+      </div>
+    </article>
+    </div>
+  </div>
+  <div class="notice">
+    This section presents the supplied conversation as an archive. Message wording has been preserved rather than rewritten.
+  </div>
+</section>
+
+<footer>
+  <span>iscammed50krobuxfromzinx.com</span>
+</footer>
+
+</body>
+</html>
