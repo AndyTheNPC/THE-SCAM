@@ -94,6 +94,74 @@ a {
 }
 
 /* =========================
+   COMMUNITY BAN BANNER
+========================= */
+
+.ban-banner {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+
+  padding:14px 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(239,68,68,.16),
+      rgba(220,38,38,.08),
+      rgba(239,68,68,.16)
+    );
+
+  border-bottom:1px solid rgba(239,68,68,.35);
+
+  color:#fca5a5;
+  text-align:center;
+}
+
+.ban-icon {
+  font-size:22px;
+  flex-shrink:0;
+}
+
+.ban-banner-content {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.ban-banner strong {
+  color:#f87171;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.ban-banner-message {
+  color:#fecaca;
+  font-size:13px;
+  font-weight:600;
+}
+
+@media(max-width:600px) {
+
+  .ban-banner {
+    padding:13px 14px;
+  }
+
+  .ban-banner-content {
+    flex-direction:column;
+    gap:3px;
+  }
+
+  .ban-banner-message {
+    font-size:12px;
+  }
+}
+
+/* =========================
    HERO
 ========================= */
 
@@ -634,6 +702,29 @@ footer {
 </nav>
 
 
+<!-- =========================
+     COMMUNITY BAN NOTICE
+========================= -->
+
+<div class="ban-banner">
+
+  <span class="ban-icon">⚠️</span>
+
+  <div class="ban-banner-content">
+
+    <strong>
+      COMMUNITY NOTICE
+    </strong>
+
+    <span class="ban-banner-message">
+      As of 8/26/2026, Andy has been banned from the Discord community.
+    </span>
+
+  </div>
+
+</div>
+
+
 <header class="hero" id="top">
 
   <div>
@@ -655,6 +746,7 @@ footer {
     </p>
 
     <div class="buttons">
+
       <a class="btn primary" href="#chat">
         Read the chat
       </a>
@@ -662,6 +754,7 @@ footer {
       <a class="btn" href="#timeline">
         View timeline
       </a>
+
     </div>
 
   </div>
@@ -719,33 +812,45 @@ footer {
   <div class="cards">
 
     <div class="card">
-      <h3>Game development</h3>
+
+      <h3>
+        Game development
+      </h3>
 
       <p>
         The game was described as ready while additional shop items,
         booth styles, ranks, paid items, and other updates were planned.
       </p>
+
     </div>
 
 
     <div class="card">
-      <h3>Ownership & access</h3>
+
+      <h3>
+        Ownership & access
+      </h3>
 
       <p>
         The central disagreement concerned who would own and control
         the game and what access each person would retain.
       </p>
+
     </div>
 
 
     <div class="card">
-      <h3>Valuation</h3>
+
+      <h3>
+        Valuation
+      </h3>
 
       <p>
         The conversation eventually moved toward selling the project,
         including a proposed price of 50,000 Robux and disagreement
         over its value.
       </p>
+
     </div>
 
   </div>
@@ -776,34 +881,46 @@ footer {
   <div class="cards">
 
     <div class="card">
-      <h3>Scam</h3>
+
+      <h3>
+        Scam
+      </h3>
 
       <p>
         A scam is a dishonest or deceptive plan designed to trick
         people into giving up their money, personal data, or valuables.
       </p>
+
     </div>
 
 
     <div class="card">
-      <h3>Scammed</h3>
+
+      <h3>
+        Scammed
+      </h3>
 
       <p>
         Scammed means you were tricked or defrauded by a dishonest
         scheme designed to steal your money, personal information,
         or valuables.
       </p>
+
     </div>
 
 
     <div class="card">
-      <h3>To be scammed</h3>
+
+      <h3>
+        To be scammed
+      </h3>
 
       <p>
         To be scammed means you are tricked or deceived by a dishonest
         person or group into giving away your money, personal
         information, or valuables.
       </p>
+
     </div>
 
   </div>
@@ -834,7 +951,10 @@ footer {
   <div class="timeline">
 
     <div class="event">
-      <time>8:41 AM</time>
+
+      <time>
+        8:41 AM
+      </time>
 
       <h3>
         Game needs to go live
@@ -843,11 +963,15 @@ footer {
       <p>
         The discussion begins with urgency around getting the game up.
       </p>
+
     </div>
 
 
     <div class="event">
-      <time>9:59 AM</time>
+
+      <time>
+        9:59 AM
+      </time>
 
       <h3>
         Ownership enters the discussion
@@ -857,11 +981,15 @@ footer {
         Full ownership is requested by Zinx, alongside a proposed
         50/50 revenue cut.
       </p>
+
     </div>
 
 
     <div class="event">
-      <time>10:00–11:16 AM</time>
+
+      <time>
+        10:00–11:16 AM
+      </time>
 
       <h3>
         Access vs. control
@@ -871,11 +999,15 @@ footer {
         Both sides discuss API access, Discord integration, Roblox API
         requirements, and the risks of shared ownership.
       </p>
+
     </div>
 
 
     <div class="event">
-      <time>11:33 AM</time>
+
+      <time>
+        11:33 AM
+      </time>
 
       <h3>
         50,000 Robux offer
@@ -885,11 +1017,15 @@ footer {
         A proposal is made to sell the game and everything associated
         with it for 50,000 Robux.
       </p>
+
     </div>
 
 
     <div class="event">
-      <time>11:35 AM–12:07 PM</time>
+
+      <time>
+        11:35 AM–12:07 PM
+      </time>
 
       <h3>
         Valuation dispute
@@ -899,11 +1035,15 @@ footer {
         The two sides debate Talent listings, custom development,
         free assets, and what comparable games are worth.
       </p>
+
     </div>
 
 
     <div class="event">
-      <time>3:29 PM</time>
+
+      <time>
+        3:29 PM
+      </time>
 
       <h3>
         Conversation ends
@@ -913,6 +1053,7 @@ footer {
         The conversation ends abruptly with Zinx doubting the work
         and refusing to collaborate.
       </p>
+
     </div>
 
   </div>
@@ -943,6 +1084,7 @@ footer {
   <div class="chat-wrap">
 
     <div class="chat-header">
+
       <strong>
         Project Discussion
       </strong>
@@ -950,6 +1092,7 @@ footer {
       <small>
         August 22, 2026 · Restricted archive
       </small>
+
     </div>
 
 
@@ -977,8 +1120,15 @@ footer {
 
 
       <div class="price">
-        <span>50,000</span>
-        <small>ROBUX</small>
+
+        <span>
+          50,000
+        </span>
+
+        <small>
+          ROBUX
+        </small>
+
       </div>
 
 
@@ -988,7 +1138,10 @@ footer {
       </p>
 
 
-      <a class="pay-btn" href="https://www.roblox.com/gift-robux?user=14786852">
+      <a
+        class="pay-btn"
+        href="https://www.roblox.com/gift-robux?user=14786852"
+      >
         🔓 Unlock Chat History
       </a>
 
