@@ -26,7 +26,7 @@
 }
 
 html {
-  scroll-padding-top:80px;
+  scroll-padding-top:140px;
 }
 
 body {
@@ -51,15 +51,21 @@ a {
   position:sticky;
   top:0;
   z-index:20;
+
+  height:59px;
+
   backdrop-filter:blur(18px);
-  background:rgba(11,13,18,.78);
+  background:rgba(11,13,18,.92);
   border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .nav-inner {
   max-width:1180px;
+  height:100%;
   margin:auto;
-  padding:16px 24px;
+
+  padding:0 24px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -98,6 +104,10 @@ a {
 ========================= */
 
 .ban-banner {
+  position:sticky;
+  top:59px;
+  z-index:19;
+
   display:flex;
   align-items:center;
   justify-content:center;
@@ -108,15 +118,17 @@ a {
   background:
     linear-gradient(
       90deg,
-      rgba(239,68,68,.16),
-      rgba(220,38,38,.08),
-      rgba(239,68,68,.16)
+      rgba(239,68,68,.20),
+      rgba(220,38,38,.10),
+      rgba(239,68,68,.20)
     );
 
   border-bottom:1px solid rgba(239,68,68,.35);
 
   color:#fca5a5;
   text-align:center;
+
+  backdrop-filter:blur(18px);
 }
 
 .ban-icon {
@@ -149,7 +161,6 @@ a {
 
   .ban-banner {
     padding:13px 14px;
-    position: sticky;
   }
 
   .ban-banner-content {
@@ -169,11 +180,16 @@ a {
 .hero {
   max-width:1180px;
   margin:auto;
+
   padding:105px 24px 85px;
+
   min-height:620px;
+
   display:grid;
   grid-template-columns:1.15fr .85fr;
+
   align-items:center;
+
   gap:60px;
 }
 
@@ -181,13 +197,20 @@ a {
   display:inline-flex;
   align-items:center;
   gap:8px;
+
   padding:7px 11px;
+
   border:1px solid var(--border);
+
   background:rgba(255,255,255,.035);
+
   border-radius:999px;
+
   color:#cbd5e1;
+
   font-size:12px;
   font-weight:800;
+
   text-transform:uppercase;
   letter-spacing:.1em;
 }
@@ -195,56 +218,85 @@ a {
 .dot {
   width:7px;
   height:7px;
+
   border-radius:50%;
+
   background:var(--green);
+
   box-shadow:0 0 14px var(--green);
 }
 
 h1 {
   margin:20px 0 18px;
+
   font-size:clamp(48px,7vw,82px);
+
   line-height:.95;
+
   letter-spacing:-.065em;
 }
 
 .gradient {
-  background:linear-gradient(110deg,#fff 15%,#c4b5fd 55%,#f9a8d4);
+  background:linear-gradient(
+    110deg,
+    #fff 15%,
+    #c4b5fd 55%,
+    #f9a8d4
+  );
+
   -webkit-background-clip:text;
   background-clip:text;
+
   color:transparent;
 }
 
 .hero p {
   max-width:650px;
+
   color:var(--muted);
+
   font-size:18px;
+
   line-height:1.7;
 }
 
 .buttons {
   display:flex;
+
   gap:12px;
+
   margin-top:30px;
+
   flex-wrap:wrap;
 }
 
 .btn {
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
+
   padding:12px 18px;
+
   border-radius:10px;
+
   text-decoration:none;
+
   font-weight:800;
   font-size:14px;
+
   border:1px solid var(--border);
+
   background:var(--panel2);
+
   transition:.2s ease;
 }
 
 .btn.primary {
   background:#fff;
+
   color:#0b0d12;
+
   border-color:#fff;
 }
 
@@ -254,34 +306,45 @@ h1 {
 
 .hero-card {
   padding:28px;
+
   border:1px solid var(--border);
+
   border-radius:22px;
-  background:linear-gradient(
-    145deg,
-    rgba(255,255,255,.07),
-    rgba(255,255,255,.025)
-  );
-  box-shadow:0 25px 80px rgba(0,0,0,.35);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.025)
+    );
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.35);
 }
 
 .hero-card .big {
   font-size:54px;
+
   font-weight:900;
+
   letter-spacing:-.05em;
 }
 
 .stat {
   padding:17px 0;
+
   border-top:1px solid var(--border);
 }
 
 .stat b {
   display:block;
+
   font-size:14px;
 }
 
 .stat span {
   color:var(--muted);
+
   font-size:13px;
 }
 
@@ -291,7 +354,9 @@ h1 {
 
 .section {
   max-width:1180px;
+
   margin:auto;
+
   padding:90px 24px;
 }
 
@@ -301,22 +366,31 @@ h1 {
 
 .kicker {
   color:#a78bfa;
+
   font-weight:900;
+
   text-transform:uppercase;
+
   font-size:12px;
+
   letter-spacing:.13em;
 }
 
 h2 {
   margin:7px 0 8px;
+
   font-size:40px;
+
   letter-spacing:-.04em;
 }
 
 .section-head p {
   color:var(--muted);
+
   margin:0;
+
   max-width:650px;
+
   line-height:1.6;
 }
 
@@ -326,14 +400,19 @@ h2 {
 
 .cards {
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:16px;
 }
 
 .card {
   padding:24px;
+
   background:rgba(255,255,255,.035);
+
   border:1px solid var(--border);
+
   border-radius:16px;
 }
 
@@ -343,8 +422,11 @@ h2 {
 
 .card p {
   margin:0;
+
   color:var(--muted);
+
   line-height:1.6;
+
   font-size:14px;
 }
 
@@ -354,32 +436,47 @@ h2 {
 
 .timeline {
   position:relative;
+
   max-width:850px;
+
   margin:0 auto;
+
   padding-left:30px;
+
   border-left:1px solid var(--border);
 }
 
 .event {
   position:relative;
+
   padding:0 0 35px 28px;
 }
 
 .event::before {
   content:"";
+
   position:absolute;
+
   width:9px;
   height:9px;
+
   border-radius:50%;
+
   background:var(--accent);
+
   left:-35px;
+
   top:7px;
-  box-shadow:0 0 0 5px rgba(139,92,246,.1);
+
+  box-shadow:
+    0 0 0 5px rgba(139,92,246,.1);
 }
 
 .event time {
   color:#a78bfa;
+
   font-size:12px;
+
   font-weight:800;
 }
 
@@ -389,7 +486,9 @@ h2 {
 
 .event p {
   margin:0;
+
   color:var(--muted);
+
   line-height:1.6;
 }
 
@@ -399,25 +498,36 @@ h2 {
 
 .chat-section {
   background:rgba(255,255,255,.018);
+
   border-top:1px solid var(--border);
+
   border-bottom:1px solid var(--border);
 }
 
 .chat-wrap {
   max-width:1000px;
+
   margin:auto;
+
   background:#313338;
+
   border:1px solid #1e1f22;
+
   border-radius:16px;
+
   overflow:hidden;
-  box-shadow:0 30px 90px rgba(0,0,0,.35);
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.35);
 }
 
 /* Discord-style header */
 
 .chat-header {
   background:#1e1f22;
+
   padding:18px 22px;
+
   border-bottom:1px solid #111214;
 }
 
@@ -427,7 +537,9 @@ h2 {
 
 .chat-header small {
   color:#949ba4;
+
   display:block;
+
   margin-top:3px;
 }
 
@@ -437,11 +549,17 @@ h2 {
 
 .paywall {
   min-height:500px;
+
   padding:70px 30px;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
+
   text-align:center;
 
   background:
@@ -456,15 +574,20 @@ h2 {
 .lock-icon {
   width:78px;
   height:78px;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
 
   border-radius:50%;
+
   background:rgba(139,92,246,.12);
+
   border:1px solid rgba(139,92,246,.3);
 
   font-size:34px;
+
   margin-bottom:22px;
 
   box-shadow:
@@ -473,24 +596,35 @@ h2 {
 
 .paywall-label {
   color:#a78bfa;
+
   font-size:11px;
+
   font-weight:900;
+
   letter-spacing:.18em;
+
   text-transform:uppercase;
+
   margin-bottom:9px;
 }
 
 .paywall h3 {
   margin:0;
+
   font-size:36px;
+
   letter-spacing:-.045em;
 }
 
 .paywall-description {
   max-width:520px;
+
   margin:13px auto 0;
+
   color:#949ba4;
+
   line-height:1.6;
+
   font-size:15px;
 }
 
@@ -502,46 +636,65 @@ h2 {
   margin:30px 0 5px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   gap:12px;
+
   flex-wrap:wrap;
 }
 
 .original-price {
   color:#747b87;
+
   font-size:22px;
+
   font-weight:800;
+
   text-decoration:line-through;
+
   text-decoration-thickness:2px;
 }
 
 .discount-badge {
   padding:6px 9px;
+
   border-radius:7px;
 
   background:rgba(74,222,128,.12);
+
   border:1px solid rgba(74,222,128,.25);
 
   color:#4ade80;
+
   font-size:11px;
+
   font-weight:900;
+
   letter-spacing:.08em;
 }
 
 .current-price {
   display:flex;
+
   align-items:baseline;
+
   gap:8px;
 
   width:100%;
+
   justify-content:center;
 }
 
 .current-price span {
   font-size:56px;
+
   line-height:1;
+
   font-weight:900;
+
   letter-spacing:-.06em;
 
   background:linear-gradient(
@@ -552,40 +705,55 @@ h2 {
   );
 
   -webkit-background-clip:text;
+
   background-clip:text;
+
   color:transparent;
 }
 
 .current-price small {
   color:#a78bfa;
+
   font-size:14px;
+
   font-weight:900;
+
   letter-spacing:.08em;
 }
 
 .paywall-sub {
   max-width:440px;
+
   margin:10px auto 0;
+
   color:#747b87;
+
   font-size:13px;
+
   line-height:1.6;
 }
 
 .pay-btn {
   display:inline-flex;
+
   align-items:center;
+
   justify-content:center;
 
   margin-top:26px;
+
   padding:14px 25px;
 
   border-radius:10px;
 
   background:#fff;
+
   color:#0b0d12;
 
   text-decoration:none;
+
   font-weight:900;
+
   font-size:14px;
 
   transition:
@@ -595,12 +763,16 @@ h2 {
 
 .pay-btn:hover {
   transform:translateY(-2px);
-  box-shadow:0 12px 35px rgba(255,255,255,.13);
+
+  box-shadow:
+    0 12px 35px rgba(255,255,255,.13);
 }
 
 .warning {
   margin-top:18px;
+
   color:#6f7682;
+
   font-size:11px;
 }
 
@@ -610,13 +782,17 @@ h2 {
 
 .notice {
   margin-top:20px;
+
   padding:14px 16px;
+
   border-radius:10px;
 
   background:rgba(139,92,246,.08);
+
   border:1px solid rgba(139,92,246,.22);
 
   color:#cbd5e1;
+
   font-size:13px;
 }
 
@@ -626,14 +802,19 @@ h2 {
 
 footer {
   max-width:1180px;
+
   margin:auto;
+
   padding:35px 24px 55px;
 
   color:var(--muted);
+
   font-size:13px;
 
   display:flex;
+
   justify-content:space-between;
+
   gap:20px;
 }
 
@@ -645,6 +826,7 @@ footer {
 
   .hero {
     grid-template-columns:1fr;
+
     padding-top:70px;
   }
 
@@ -671,6 +853,10 @@ footer {
 
 @media(max-width:600px) {
 
+  html {
+    scroll-padding-top:135px;
+  }
+
   .section {
     padding:65px 14px;
   }
@@ -682,12 +868,14 @@ footer {
 
   .paywall {
     min-height:470px;
+
     padding:55px 20px;
   }
 
   .lock-icon {
     width:68px;
     height:68px;
+
     font-size:29px;
   }
 
@@ -717,6 +905,7 @@ footer {
 
   .pay-btn {
     width:100%;
+
     max-width:300px;
   }
 
@@ -728,6 +917,10 @@ footer {
 </head>
 
 <body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav class="nav">
 
@@ -783,25 +976,40 @@ footer {
 </div>
 
 
+<!-- =========================
+     HERO
+========================= -->
+
 <header class="hero" id="top">
 
   <div>
 
     <div class="eyebrow">
+
       <span class="dot"></span>
+
       Archived conversation
+
     </div>
 
+
     <h1>
+
       The story<br>
-      <span class="gradient">in the logs.</span>
+
+      <span class="gradient">
+        in the logs.
+      </span>
+
     </h1>
+
 
     <p>
       A preserved record of the conversations surrounding the project,
       ownership, development, access, revenue, and the proposed sale.
       A real insight into the "scamming" of Zinx.
     </p>
+
 
     <div class="buttons">
 
@@ -824,24 +1032,45 @@ footer {
       Scam or negotiation?
     </div>
 
+
     <p style="margin:5px 0 24px;color:var(--muted)">
       Conversation archive
     </p>
 
-    <div class="stat">
-      <b>ZinxLinkk [FUND]</b>
-      <span>Participant</span>
-    </div>
 
     <div class="stat">
-      <b>AndyTheNPC [CHNA]</b>
-      <span>Participant</span>
+
+      <b>
+        ZinxLinkk [FUND]
+      </b>
+
+      <span>
+        Participant
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        AndyTheNPC [CHNA]
+      </b>
+
+      <span>
+        Participant
+      </span>
+
     </div>
 
   </aside>
 
 </header>
 
+
+<!-- =========================
+     OVERVIEW
+========================= -->
 
 <section class="section" id="about">
 
@@ -851,9 +1080,11 @@ footer {
       Overview
     </div>
 
+
     <h2>
       What happened?
     </h2>
+
 
     <p>
       Andy reached out to Zinx with the idea of a new Roblox Experience.
@@ -916,6 +1147,10 @@ footer {
 </section>
 
 
+<!-- =========================
+     DEFINITIONS
+========================= -->
+
 <section class="section" id="definitions">
 
   <div class="section-head">
@@ -924,9 +1159,11 @@ footer {
       Definitions
     </div>
 
+
     <h2>
       What does it mean to scam?
     </h2>
+
 
     <p>
       A quick Google search into the definition of scam, scammed,
@@ -986,6 +1223,10 @@ footer {
 </section>
 
 
+<!-- =========================
+     TIMELINE
+========================= -->
+
 <section class="section" id="timeline">
 
   <div class="section-head">
@@ -994,9 +1235,11 @@ footer {
       Timeline
     </div>
 
+
     <h2>
       Key moments
     </h2>
+
 
     <p>
       The conversation progressed from access and ownership to a
@@ -1014,9 +1257,11 @@ footer {
         8:41 AM
       </time>
 
+
       <h3>
         Game needs to go live
       </h3>
+
 
       <p>
         The discussion begins with urgency around getting the game up.
@@ -1031,9 +1276,11 @@ footer {
         9:59 AM
       </time>
 
+
       <h3>
         Ownership enters the discussion
       </h3>
+
 
       <p>
         Full ownership is requested by Zinx, alongside a proposed
@@ -1049,9 +1296,11 @@ footer {
         10:00–11:16 AM
       </time>
 
+
       <h3>
         Access vs. control
       </h3>
+
 
       <p>
         Both sides discuss API access, Discord integration, Roblox API
@@ -1067,9 +1316,11 @@ footer {
         11:33 AM
       </time>
 
+
       <h3>
         50,000 Robux offer
       </h3>
+
 
       <p>
         A proposal is made to sell the game and everything associated
@@ -1085,9 +1336,11 @@ footer {
         11:35 AM–12:07 PM
       </time>
 
+
       <h3>
         Valuation dispute
       </h3>
+
 
       <p>
         The two sides debate Talent listings, custom development,
@@ -1103,9 +1356,11 @@ footer {
         3:29 PM
       </time>
 
+
       <h3>
         Conversation ends
       </h3>
+
 
       <p>
         The conversation ends abruptly with Zinx doubting the work
@@ -1119,6 +1374,10 @@ footer {
 </section>
 
 
+<!-- =========================
+     CHAT HISTORY
+========================= -->
+
 <section class="section chat-section" id="chat">
 
   <div class="section-head">
@@ -1127,9 +1386,11 @@ footer {
       Primary source
     </div>
 
+
     <h2>
       Chat History
     </h2>
+
 
     <p>
       The conversation archive is currently restricted.
@@ -1146,6 +1407,7 @@ footer {
       <strong>
         Project Discussion
       </strong>
+
 
       <small>
         August 22, 2026 · Restricted archive
@@ -1177,7 +1439,9 @@ footer {
       </p>
 
 
-      <!-- DISCOUNTED PRICE -->
+      <!-- =========================
+           DISCOUNTED PRICE
+      ========================= -->
 
       <div class="price">
 
@@ -1185,15 +1449,18 @@ footer {
           50,000 ROBUX
         </span>
 
+
         <span class="discount-badge">
           69% OFF
         </span>
+
 
         <div class="current-price">
 
           <span>
             15,500
           </span>
+
 
           <small>
             ROBUX
@@ -1234,6 +1501,10 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
