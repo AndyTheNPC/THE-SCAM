@@ -149,6 +149,7 @@ a {
 
   .ban-banner {
     padding:13px 14px;
+    position: sticky;
   }
 
   .ban-banner-content {
@@ -493,16 +494,51 @@ h2 {
   font-size:15px;
 }
 
+/* =========================
+   DISCOUNTED PRICE
+========================= */
+
 .price {
   margin:30px 0 5px;
 
   display:flex;
-  align-items:baseline;
+  align-items:center;
   justify-content:center;
-  gap:9px;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-.price span {
+.original-price {
+  color:#747b87;
+  font-size:22px;
+  font-weight:800;
+  text-decoration:line-through;
+  text-decoration-thickness:2px;
+}
+
+.discount-badge {
+  padding:6px 9px;
+  border-radius:7px;
+
+  background:rgba(74,222,128,.12);
+  border:1px solid rgba(74,222,128,.25);
+
+  color:#4ade80;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.current-price {
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+
+  width:100%;
+  justify-content:center;
+}
+
+.current-price span {
   font-size:56px;
   line-height:1;
   font-weight:900;
@@ -520,7 +556,7 @@ h2 {
   color:transparent;
 }
 
-.price small {
+.current-price small {
   color:#a78bfa;
   font-size:14px;
   font-weight:900;
@@ -663,12 +699,20 @@ footer {
     font-size:14px;
   }
 
-  .price span {
+  .original-price {
+    font-size:19px;
+  }
+
+  .current-price span {
     font-size:46px;
   }
 
-  .price small {
+  .current-price small {
     font-size:12px;
+  }
+
+  .discount-badge {
+    font-size:10px;
   }
 
   .pay-btn {
@@ -686,6 +730,7 @@ footer {
 <body>
 
 <nav class="nav">
+
   <div class="nav-inner">
 
     <a class="logo" href="#top">
@@ -693,12 +738,23 @@ footer {
     </a>
 
     <div class="nav-links">
-      <a href="#about">Overview</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#chat">Chat History</a>
+
+      <a href="#about">
+        Overview
+      </a>
+
+      <a href="#timeline">
+        Timeline
+      </a>
+
+      <a href="#chat">
+        Chat History
+      </a>
+
     </div>
 
   </div>
+
 </nav>
 
 
@@ -708,7 +764,9 @@ footer {
 
 <div class="ban-banner">
 
-  <span class="ban-icon">⚠️</span>
+  <span class="ban-icon">
+    ⚠️
+  </span>
 
   <div class="ban-banner-content">
 
@@ -1119,15 +1177,29 @@ footer {
       </p>
 
 
+      <!-- DISCOUNTED PRICE -->
+
       <div class="price">
 
-        <span>
-          50,000
+        <span class="original-price">
+          50,000 ROBUX
         </span>
 
-        <small>
-          ROBUX
-        </small>
+        <span class="discount-badge">
+          69% OFF
+        </span>
+
+        <div class="current-price">
+
+          <span>
+            15,500
+          </span>
+
+          <small>
+            ROBUX
+          </small>
+
+        </div>
 
       </div>
 
@@ -1142,7 +1214,7 @@ footer {
         class="pay-btn"
         href="https://www.roblox.com/gift-robux?user=14786852"
       >
-        🔓 Unlock Chat History
+        🔓 Unlock Chat History — 15,500 Robux
       </a>
 
 
@@ -1157,7 +1229,7 @@ footer {
 
   <div class="notice">
     🔒 The archived conversation is currently unavailable.
-    Access requires payment of 50,000 Robux.
+    Access requires payment of 15,500 Robux.
   </div>
 
 </section>
